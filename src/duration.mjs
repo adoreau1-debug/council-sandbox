@@ -2,8 +2,12 @@ const PATTERN = /^(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/;
 const FACTORS = [86400, 3600, 60, 1];
 
 export function parseDuration(text) {
-  if (typeof text !== "string" || text === "") {
-    throw new TypeError(`Invalid duration: ${String(text)}`);
+  if (typeof text !== "string") {
+    const kind = text === null ? "null" : typeof text;
+    throw new TypeError(`Invalid duration: expected a string, got ${kind}`);
+  }
+  if (text === "") {
+    throw new TypeError("Invalid duration: empty string");
   }
   const match = PATTERN.exec(text);
   if (!match) {
