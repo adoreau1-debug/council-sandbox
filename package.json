@@ -1,0 +1,10 @@
+{
+  "name": "council-sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sandbox repository for AI Council phase-1 acceptance (WP8): small tasks with tests",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node scripts/check.mjs" }
+}
