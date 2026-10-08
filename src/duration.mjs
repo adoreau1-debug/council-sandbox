@@ -11,6 +11,7 @@ const FACTORS = [86400, 3600, 60, 1];
 export function parseDuration(text) {
   if (typeof text !== "string" || text === "") throw new TypeError(`invalid duration: ${String(text)}`);
   const match = PATTERN.exec(text);
-  if (!match) throw new TypeError(`invalid duration: ${text}`);
+  // Require the match to consume the whole string (e.g. reject a trailing "\n").
+  if (!match || match.index !== 0 || match[0].length !== text.length) throw new TypeError(`invalid duration: ${text}`);
   return FACTORS.reduce((total, factor, i) => total + (match[i + 1] ? Number(match[i + 1]) * factor : 0), 0);
 }
