@@ -8,7 +8,7 @@ const CANONICAL = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
 
 export function toRoman(n) {
   if (!Number.isInteger(n) || n < 1 || n > 3999) {
-    throw new RangeError(`toRoman: expected integer 1..3999, got ${n}`);
+    throw new RangeError("toRoman: expected an integer in 1..3999");
   }
   let out = "";
   for (const [value, sym] of TABLE) {
@@ -22,7 +22,7 @@ export function toRoman(n) {
 
 export function fromRoman(s) {
   if (typeof s !== "string" || s === "" || !CANONICAL.test(s)) {
-    throw new TypeError(`fromRoman: not a canonical roman numeral: ${String(s)}`);
+    throw new TypeError("fromRoman: expected a canonical roman numeral string");
   }
   let total = 0;
   let i = 0;
