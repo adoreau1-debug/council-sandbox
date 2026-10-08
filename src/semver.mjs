@@ -10,7 +10,9 @@ const SEMVER_RE = new RegExp(
 );
 
 function parse(version) {
-  if (typeof version !== "string") throw new TypeError(`Invalid version: ${String(version)}`);
+  if (typeof version !== "string") {
+    throw new TypeError(`Invalid version: expected a string, got ${version === null ? "null" : typeof version}`);
+  }
   const m = SEMVER_RE.exec(version);
   if (!m) throw new TypeError(`Invalid version: ${version}`);
   return {
