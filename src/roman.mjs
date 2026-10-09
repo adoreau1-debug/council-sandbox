@@ -32,7 +32,7 @@ export function toRoman(n) {
 
 export function fromRoman(s) {
   if (typeof s !== "string" || s === "" || !CANONICAL.test(s)) {
-    throw new TypeError(`fromRoman expects a canonical roman numeral, got ${String(s)}`);
+    throw new TypeError("fromRoman expects a canonical roman numeral");
   }
   let n = 0;
   let i = 0;
