@@ -5,7 +5,10 @@ const SEMVER_RE =
 const NUMERIC_RE = /^\d+$/;
 
 function parse(version) {
-  if (typeof version !== "string") throw new TypeError(`Invalid version: ${String(version)}`);
+  // Report only the type: stringifying the value could invoke user-defined toString/valueOf.
+  if (typeof version !== "string") {
+    throw new TypeError(`Invalid version: expected a string, got ${version === null ? "null" : typeof version}`);
+  }
   const m = SEMVER_RE.exec(version);
   if (!m) throw new TypeError(`Invalid version: ${version}`);
   return {
