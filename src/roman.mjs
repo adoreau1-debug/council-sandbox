@@ -18,7 +18,7 @@ const CANONICAL = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
 
 export function toRoman(n) {
   if (!Number.isInteger(n) || n < 1 || n > 3999) {
-    throw new RangeError(`toRoman expects an integer in 1..3999, got ${n}`);
+    throw new RangeError("toRoman expects an integer in 1..3999");
   }
   let out = "";
   for (const [value, symbol] of NUMERALS) {
